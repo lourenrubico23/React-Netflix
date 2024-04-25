@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer {
+  h1,h2,h3,h4,h5,h6{
+    @apply font-bold
+  }
+
+  p{
+    @apply mb-4
+  }
+
+  img{
+    @apply block
+  }
+
+
+}
+
+@layer components{
+  .btn{
+    @apply h-[42px] inline-block p-2 bg-transparent text-white border border-white rounded-md
+  }
+  .btn-accent{
+    @apply bg-accent border-accent
+  }
+  .input__wrapper{
+    @apply relative mb-5
+  }
+  .input__wrapper input{
+    @apply w-full px-4 pb-2 pt-6 rounded-md bg-white/5 border border-white outline-none text-white
+  }
+  .input__wrapper label{
+    @apply absolute top-4 left-5 text-white transition-all pointer-events-none
+  }
+  .input__wrapper input:focus + label, .input__wrapper input:valid + label{
+    @apply text-xs top-2 left-4
+  }
+}
+
+.feature__list .features:nth-child(even) .content{
+  @apply order-1
+}
+
+.answer p{
+  @apply text-xl mb-5 
+}
+
+.slick-dots {
+  @apply absolute top-[220px] text-right
+}
+
+.slick-dots li button:before {
+  @apply content-[''] w-[22px] h-[3px] bg-zinc-200 mx-1
+    
+}
+.slick-arrow{
+  @apply transition-all
+}
+.slick-arrow svg{
+  @apply opacity-0 hover:opacity-100 
+}
+.slick-next, .slick-prev{
+  @apply h-full opacity-0 hover:opacity-100 z-10
+    
+}
+
+.slick-next, .slick-prev{
+  @apply h-full opacity-50 hover:opacity-100 flex flex-col justify-center items-center mt-[-2px];
+  svg{
+      @apply h-fit 
+      text-white text-4xl brightness-200;
+  }
+}
+.slick-next::before, .slick-prev::before{
+  @apply hidden;
+}
+
+.movie__info::before {
+  @apply content-[''] absolute bottom-full left-0 h-[100px] w-full  block  bg-gradient-to-t from-[rgba(20,20,20,.8)] from-15% via-[rgba(20,20,20,.4)] via-60% to-transparent
+}
