@@ -1,15 +1,19 @@
 import React from 'react'
 import { FaPlay, FaPlusCircle, FaThumbsUp, FaTimesCircle } from 'react-icons/fa'
 import { baseImgUrl } from '../../helpers/functions-general'
+import MovieRelatedCard from './MovieRelatedCard'
+import { movies } from './data'
 
 const ModalMovieInfo = ({setMovieInfo, movieData}) => {
     const handleClose = () =>  setMovieInfo(false)
 
-  return (
-    <div className='fixed top-0 left-0 w-full h-screen isolate'>
-        <div className="backdrop absolute top-0 left-0 h-full w-full bg-black/20"></div>
+    const getRelatedGenre = movies.filter((movie) => movie.genre === movieData.genre && movie.title !==movieData.title)
 
-        <main className='max-w-[700px] w-full bg-primary absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] max-h-[700px] h-full'>
+  return (
+    <div className='fixed top-0 left-0 w-full h-screen isolate text-white'>
+        <div className="backdrop absolute top-0 left-0 h-full w-full bg-black/70"></div>
+
+        <main className='max-w-[700px] w-full bg-primary absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] max-h-[1000px] h-full'>
             
             <div className='modal__banner'>
                 <div className='relative'>
@@ -34,7 +38,7 @@ const ModalMovieInfo = ({setMovieInfo, movieData}) => {
                             <p className='text-sm mb-2'><span>{movieData.year}</span> <span>{movieData.duration}</span> <span className='p-.1 border border-white text-xs'>HD</span></p>
                             <p className='border border-white inline p-.5'>{movieData.rating}+</p>
                         </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod harum consectetur laudantium ipsam cumque explicabo laborum? Numquam sunt reiciendis nobis eveniet, corporis corrupti suscipit quae eligendi voluptas, cupiditate officia ducimus in aut unde voluptatibus eaque.</p>
+                        <p>{movieData.description}</p>
                     </div>
 
                     <ul>
@@ -46,6 +50,15 @@ const ModalMovieInfo = ({setMovieInfo, movieData}) => {
 
                 </div>
             </div>
+
+            <h5 className='pl-4 my-5 font-bold text-xl'>More like this</h5>
+            <div className='h-[250px] overflow-auto px-4 custom-scroll'>
+                <div className='grid grid-cols-3 gap-2'>
+                    {getRelatedGenre.map((movie, key) => (<MovieRelatedCard movie={movie}/>))}
+
+                </div>
+            </div>
+            
         </main>
       
     </div>

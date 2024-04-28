@@ -2,7 +2,9 @@ export const features = [
     {
         header: "Enjoy on your TV",
         body: "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.",
-        img: "/home/tv.png"
+        img: "/home/tv.png",
+        
+
     },
     {
         header: "Download your shows to watch offline",

@@ -6,12 +6,19 @@ import { CiBellOn } from "react-icons/ci";
 import { FaCaretDown, FaCaretRight } from 'react-icons/fa';
 import BasicSlider from './BasicSlider';
 import ModalMovieInfo from './ModalMovieInfo';
-import { movies } from './data';
+import { movies, topmovies } from './data';
+import FooterMovie from '../../partials/footer/FooterMovie';
+import SliderTop from './SliderTop';
+import ModalSearch from './ModalSearch';
 
 const Movies = () => {
     const [showMovieInfo, setMovieInfo] = React.useState(false);
     const [movieData, setMovieData] = React.useState(null);
+    const [search, setSearch] = React.useState(false);
+    
 
+
+    const handleShowSearch = () => setSearch(true)
     const handleShowMovieInfo = () => setMovieInfo(true)
     
 
@@ -40,7 +47,7 @@ const Movies = () => {
                 </div>
                 <div>
                     <ul className='flex items-center gap-5 text-white'>
-                        <li><button><CiSearch /></button></li>
+                        <li><button onClick={handleShowSearch}><CiSearch /></button></li>
                         <li><button><CiBellOn /></button></li>
                         <li className='flex items-center gap-3'>
                             <button><img src="https:/via.placeholder.com/50x50" alt=""  className='rounded-md'/></button></li>
@@ -63,10 +70,16 @@ const Movies = () => {
     <div className='slider__wrapper px-10 py-20'>
     <BasicSlider setMovieInfo={setMovieInfo} movies={movies} setMovieData={setMovieData} grouping="Trending" sliderHeader="Trending Movies"/>
     <BasicSlider setMovieInfo={setMovieInfo} movies={movies} setMovieData={setMovieData} grouping="Asian" sliderHeader="Asian Movies"/>
+    <SliderTop setMovieInfo={setMovieInfo} topmovies={topmovies} setMovieData={setMovieData}  grouping="Top" sliderHeader="Top 10 Movies"/>
+
+    
     </div>
+    <FooterMovie/>
 </div>
     
     {showMovieInfo && <ModalMovieInfo setMovieInfo={setMovieInfo} movieData={movieData}/>}
+    
+    {search && <ModalSearch setSearch={setSearch}/>}
     
     </>
   )

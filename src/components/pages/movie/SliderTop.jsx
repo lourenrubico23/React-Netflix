@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import { baseImgUrl } from '../../helpers/functions-general';
 import { movies } from './data';
 
-const BasicSlider = ({setMovieInfo, movies, setMovieData, grouping, sliderHeader}) => {
+const SliderTop = ({setMovieInfo, topmovies, setMovieData, grouping, sliderHeader}) => {
 
   const handleShowMovieInfo = (data) => { 
     setMovieData(data)
@@ -50,17 +50,21 @@ const BasicSlider = ({setMovieInfo, movies, setMovieData, grouping, sliderHeader
       }
 
       
-      const getGroupings = movies.filter((movie) => movie.grouping === grouping)  
+      const getGroupings = topmovies.filter((topmovies) => topmovies.grouping === grouping)  
 
   return (
     <>
     <div className='relative mb-5'>
     <h3 className='text-3xl mb-5 font-bold'>{sliderHeader}</h3>
     <Slider {...settings}>
-      {getGroupings.map((movie, key) =>(
-        <div key={key}>
-        <button className='relative' onClick={() => handleShowMovieInfo(movie)}>
-          <img src={`${baseImgUrl}/movie/${movie.img}`}alt="" className='w-[315px] h-[200px] bg-cover' />
+      {getGroupings.map((topmovies, key) =>(
+        <div key={key} className=''>
+        <button className='relative' onClick={() => handleShowMovieInfo(topmovies)}>
+            <div className='relative'>
+                <img src={`${baseImgUrl}/movie/${topmovies.number}`} alt="" className='w-[360px] h-[265px] top-0 object-fit absolute -translate-x-[110px] -translate-y-[30px] z-[-1]'/>
+          <img src={`${baseImgUrl}/movie/${topmovies.img}`}alt="" className='w-[160px] h-[200px] bg-cover z-50' />
+            </div>
+            
           <span className='px-2 py-1 rounded-tl-md absolute bottom-0 left-1/2 -translate-x-1/2  bg-red-800 text-white text-[12px]'>Recently Added</span>
         </button>
       </div>
@@ -75,4 +79,4 @@ const BasicSlider = ({setMovieInfo, movies, setMovieData, grouping, sliderHeader
   
 }
 
-export default BasicSlider
+export default SliderTop
